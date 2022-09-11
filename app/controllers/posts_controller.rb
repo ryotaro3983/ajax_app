@@ -8,7 +8,9 @@ class PostsController < ApplicationController
   # end
 
   def create
-    Post.create(content: params[:content])
-    redirect_to action: :index
+    #Ajax通信のための準備：変数に格納
+    post = Post.create(content: params[:content])
+    #redirectでページ更新ではなく、renderメソッドでレスポンス
+    render json:{post: post}
   end
 end
